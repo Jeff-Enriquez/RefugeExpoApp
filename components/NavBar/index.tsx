@@ -16,6 +16,8 @@ export default function NavBar({ setRoute }) {
     return <AppLoading />;
   } else {
     return (
+      <>
+      <View style={styles.margin}></View>
       <View style={styles.navBar}>
         <TouchableWithoutFeedback onPress={() => setRoute('Home')}>
           <View style={styles.navOption}>
@@ -42,11 +44,15 @@ export default function NavBar({ setRoute }) {
           </View>
         </TouchableWithoutFeedback>
       </View>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  margin: {
+    height: 55,
+  },
   navBar: {
     position: 'absolute',
     bottom: 0,
@@ -59,6 +65,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopColor: '#222222',
     borderTopWidth: 1,
+    borderColor: 'blue',
+    borderWidth: 2,
   },
   navOption: {
     minHeight: 55,
