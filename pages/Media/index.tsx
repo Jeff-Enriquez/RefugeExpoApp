@@ -5,6 +5,7 @@ import {
   useFonts,
   Montserrat_400Regular as Montserrat400,
 } from '@expo-google-fonts/montserrat';
+import DropDown from './DropDown'
 
 export default function Media() {
   let [fontsLoaded] = useFonts({
@@ -15,9 +16,7 @@ export default function Media() {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Media</Text>
-      </View>
+      <DropDown/>
     )
   }
 }
