@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from 'react-native';
-import Heading from './components/Heading'
+import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 export default function App() {
+  const [route, setRoute] = useState<string>('Home')
+  
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <StatusBar barStyle='light-content' />
-      <Heading/>
+      <Header/>
       <View style={styles.container}>
         <Text style={styles.text}>Hello</Text>
       </View>
+      <NavBar setRoute={ setRoute }/>
     </SafeAreaView>
   );
 }
