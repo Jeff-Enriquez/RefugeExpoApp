@@ -4,12 +4,12 @@ import { Image } from 'react-native-elements';
 import { AppLoading } from 'expo';
 import {
   useFonts,
-  Montserrat_400Regular as Montserrat400,
+  Montserrat_600SemiBold as Montserrat600,
 } from '@expo-google-fonts/montserrat';
 
 export default function Header() {
   let [fontsLoaded] = useFonts({
-    Montserrat400,
+    Montserrat600,
   });
 
   if (!fontsLoaded) {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   headingText: {
     color: 'white',
-    fontFamily: 'Montserrat400',
+    fontFamily: 'Montserrat600',
     fontSize: 14,
   },
 });
