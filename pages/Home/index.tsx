@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat400',
     fontSize: 24,
   },
 });

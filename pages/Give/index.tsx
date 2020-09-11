@@ -16,7 +16,7 @@ export default function Give() {
   } else {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Home</Text>
+        <Text style={styles.text}>Give</Text>
       </View>
     )
   }
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat400',
     fontSize: 24,
   },
 });
