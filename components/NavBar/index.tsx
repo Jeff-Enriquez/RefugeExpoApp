@@ -65,8 +65,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopColor: '#222222',
     borderTopWidth: 1,
-    borderColor: 'blue',
-    borderWidth: 2,
   },
   navOption: {
     minHeight: 55,
