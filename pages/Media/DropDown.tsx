@@ -8,9 +8,7 @@ import {
 } from '@expo-google-fonts/source-sans-pro';
 
 export default function DropDown() {
-  let [fontsLoaded] = useFonts({
-    SourceSansPro400,
-  });
+  let [fontsLoaded] = useFonts({ SourceSansPro400, });
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -19,7 +17,7 @@ export default function DropDown() {
       <>
       <View style={styles.headingContainer}>
           <Text style={styles.heading}>Refuge Unplugged</Text>
-          <Image  style={styles.arrow} source={require('../../assets/images/arrow-white.png')}/>
+          <Image style={styles.arrow} source={require('../../assets/images/arrow-white.png')}/>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text1}>Refuge Unplugged</Text>
