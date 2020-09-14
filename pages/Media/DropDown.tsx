@@ -1,6 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Image } from 'react-native-elements';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, StyleSheet, Animated, TouchableWithoutFeedback } from 'react-native';
 import { AppLoading } from 'expo';
 import {
   useFonts,
@@ -8,6 +7,17 @@ import {
 } from '@expo-google-fonts/source-sans-pro';
 
 export default function DropDown() {
+  const flipImage = useRef(new Animated.Value(-1)).current;
+  const [scaleValue, setScaleValue] = useState<number>(-1)
+
+  useEffect(() => {
+    Animated.timing(flipImage, {
+      toValue: scaleValue,
+      duration: 200, 
+      useNativeDriver: true
+    }).start();
+  }, [scaleValue])
+
   let [fontsLoaded] = useFonts({ SourceSansPro400, });
 
   if (!fontsLoaded) {
@@ -15,10 +25,15 @@ export default function DropDown() {
   } else {
     return (
       <>
-      <View style={styles.headingContainer}>
+      <TouchableWithoutFeedback onPress={() => setScaleValue(prevNum => prevNum === -1 ? 1 : -1)}>
+        <View style={styles.headingContainer}>
           <Text style={styles.heading}>Refuge Unplugged</Text>
-          <Image style={styles.arrow} source={require('../../assets/images/arrow-white.png')}/>
-      </View>
+          <Animated.Image 
+            style={[styles.arrow, {
+              transform: [{ scaleY: flipImage }]
+            }]} source={require('../../assets/images/arrow-white.png')}/>
+        </View>
+      </TouchableWithoutFeedback>
       <View style={styles.textContainer}>
         <Text style={styles.text1}>Refuge Unplugged</Text>
         <Text style={styles.text}>Refuge Kids</Text>

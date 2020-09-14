@@ -5,7 +5,6 @@ import {
   useFonts,
   Montserrat_400Regular as Montserrat400,
 } from '@expo-google-fonts/montserrat';
-import FlipImage from '../../components/FlipImage'
 
 export default function Give() {
   let [fontsLoaded] = useFonts({
@@ -18,7 +17,6 @@ export default function Give() {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Give</Text>
-        <FlipImage/>
       </View>
     )
   }
