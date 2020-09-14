@@ -15,6 +15,7 @@ export default function Media() {
     return (
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../../assets/images/worship-guitar.jpg')}/>
+        <Text style={styles.text}>Come back to this screen for our live streaming service</Text>
       </View>
     )
   }
@@ -26,9 +27,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
+    textAlign: 'center',
     color: 'white',
     fontFamily: 'Montserrat400',
-    fontSize: 24,
+    fontSize: 10,
   },
   image: {
     width: '100%',
