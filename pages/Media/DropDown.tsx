@@ -4,7 +4,6 @@ import { AppLoading } from 'expo';
 import {
   useFonts,
   SourceSansPro_400Regular as SourceSansPro400,
-
 } from '@expo-google-fonts/source-sans-pro';
 
 export default function DropDown() {
