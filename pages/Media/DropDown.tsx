@@ -42,7 +42,7 @@ export default function DropDown() {
   } else {
     return (
       <ThemeContext.Consumer>
-      {(theme) => {
+      {({ theme }) => {
         return ( 
         <>
         <TouchableWithoutFeedback onPress={() => animateMenu()}>

@@ -19,7 +19,7 @@ export default function Header() {
   } else {
     return (
       <ThemeContext.Consumer>
-      {(theme) => {
+      {({ theme }) => {
         return ( 
         <View style={[styles.heading, { backgroundColor: theme.background }]}>
           <Image source={require('../../assets/images/fire-icon.png')} style={{width: 16, height: 20}}/>

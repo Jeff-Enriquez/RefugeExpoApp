@@ -3,31 +3,26 @@ import { ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Routes from './routes';
-import ThemeContext from './ThemeContext'
+import ThemeContext, { themes, Theme } from './ThemeContext'
 
 export default function App() {
   const [route, setRoute] = useState<string>('Home')
+  const [theme, setTheme] = useState<Theme>(themes.dark)
 
-  type barStates = 'light-content' | 'dark-content'
-
-  interface Theme {
-    text: string
-    background: string
-    barStyle: barStates
-    isLight: boolean
+  const toggleTheme = () => {
+    if(theme === themes.dark){
+      setTheme(themes.light)
+    } else {
+      setTheme(themes.dark)
+    }
   }
-  
-  const darkTheme: Theme = {
-    text: 'white',
-    background: 'black', 
-    barStyle: 'light-content',
-    isLight: false
-  }
-
   return (
-    <ThemeContext.Provider value={darkTheme}>
+    <ThemeContext.Provider value={{
+      theme: theme,
+      toggleTheme: toggleTheme,
+      }}>
       <ThemeContext.Consumer>
-      {(theme) => {
+      {({ theme }) => {
         return (
         <SafeAreaView style={{
           backgroundColor: theme.background,

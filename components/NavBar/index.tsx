@@ -18,7 +18,7 @@ export default function NavBar({ setRoute }) {
   } else {
     return (
       <ThemeContext.Consumer>
-      {(theme) => {
+      {({ theme }) => {
         return ( 
         <>
         <View style={styles.margin}></View>
