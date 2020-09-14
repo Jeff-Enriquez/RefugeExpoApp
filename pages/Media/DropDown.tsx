@@ -9,12 +9,12 @@ import {
 export default function DropDown() {
   const flipImage = useRef(new Animated.Value(1)).current;
   const [scaleValue, setScaleValue] = useState<number>(1)
-  const menuOptionsSlide = useRef(new Animated.Value(-220)).current;
-  const [menuOptionsSlideValue, setMenuOptionsSlideValue] = useState<number>(-220)
+  const menuOptionsSlide = useRef(new Animated.Value(-240)).current;
+  const [menuOptionsSlideValue, setMenuOptionsSlideValue] = useState<number>(-240)
 
   const animateMenu = () => {
     setScaleValue(prevNum => prevNum === -1 ? 1 : -1)
-    setMenuOptionsSlideValue(prevValue => prevValue === -220 ? 87 : -220)
+    setMenuOptionsSlideValue(prevValue => prevValue === -240 ? 69.5 : -240)
   }
 
   useEffect(() => {
