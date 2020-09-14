@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'black',
     flex: 1,
+    zIndex: 999,
   },
   headingText: {
     color: 'white',

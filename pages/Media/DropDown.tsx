@@ -11,12 +11,12 @@ import {
 export default function DropDown() {
   const flipImage = useRef(new Animated.Value(1)).current;
   const [scaleValue, setScaleValue] = useState<number>(1)
-  const menuOptionsSlide = useRef(new Animated.Value(-300)).current;
-  const [menuOptionsSlideValue, setMenuOptionsSlideValue] = useState<number>(-300)
+  const menuOptionsSlide = useRef(new Animated.Value(-220)).current;
+  const [menuOptionsSlideValue, setMenuOptionsSlideValue] = useState<number>(-220)
 
   const animateMenu = () => {
     setScaleValue(prevNum => prevNum === -1 ? 1 : -1)
-    setMenuOptionsSlideValue(prevValue => prevValue === -300 ? 0 : -300)
+    setMenuOptionsSlideValue(prevValue => prevValue === -220 ? 88 : -220)
   }
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function DropDown() {
     }).start();
   }, [menuOptionsSlideValue])
 
-  let [fontsLoaded] = useFonts({ SourceSansPro400 });
+  let [fontsLoaded] = useFonts({ SourceSansPro400, SourceSansPro600 });
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     borderColor: '#C3C3C3',
     borderBottomWidth: 0.5,
     paddingVertical: 5,
+    zIndex: 101
   },
   heading: {
     color: 'white',
@@ -90,12 +91,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textContainer: {
+    position: 'absolute',
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#222222',
     paddingBottom: 3,
-    zIndex: -1,
+    zIndex: 100,
   },
   text1: {
     color: 'white',
