@@ -5,6 +5,8 @@ import {
   useFonts,
   SourceSansPro_400Regular as SourceSansPro400,
 } from '@expo-google-fonts/source-sans-pro';
+import ThemeContext from '../../ThemeContext'
+
 
 export default function DropDown() {
   const flipImage = useRef(new Animated.Value(1)).current;
@@ -14,7 +16,7 @@ export default function DropDown() {
 
   const animateMenu = () => {
     setScaleValue(prevNum => prevNum === -1 ? 1 : -1)
-    setMenuOptionsSlideValue(prevValue => prevValue === -240 ? 69.5 : -240)
+    setMenuOptionsSlideValue(prevValue => prevValue === -240 ? 68 : -240)
   }
 
   useEffect(() => {
@@ -39,31 +41,36 @@ export default function DropDown() {
     return <AppLoading />;
   } else {
     return (
-      <>
-      <TouchableWithoutFeedback onPress={() => animateMenu()}>
-        <View style={styles.headingContainer}>
-          <Text style={styles.heading}>Refuge Unplugged</Text>
-          <Animated.Image 
-            style={[styles.arrow, {
-              transform: [{ scaleY: flipImage }]
-            }]} source={require('../../assets/images/arrow-white.png')}/>
-        </View>
-      </TouchableWithoutFeedback>
-      <Animated.View
-        style={[styles.textContainer, {
-          transform: [{ translateY: menuOptionsSlide }]
-        }]}>
-        <Text style={styles.text1}>Refuge Unplugged</Text>
-        <Text style={styles.text}>Refuge Kids</Text>
-        <Text style={styles.text}>RefugeLIVE TV</Text>
-        <Text style={styles.text}>Convos & Coffee</Text>
-        <Text style={styles.text}>Beloved: Relational TV</Text>
-        <Text style={styles.text}>Rapha: Healing TV</Text>
-        <Text style={styles.text}>Daughters of the King TV</Text>
-        <Text style={styles.text}>Refuge Men TV</Text>
-        <Text style={styles.text}>Prophetic TV with Yvonne Camper</Text>
-      </Animated.View>
-      </>
+      <ThemeContext.Consumer>
+      {(theme) => {
+        return ( 
+        <>
+        <TouchableWithoutFeedback onPress={() => animateMenu()}>
+          <View style={styles.headingContainer}>
+            <Text style={[styles.heading, { color: theme.text }]}>Refuge Unplugged</Text>
+            <Animated.Image 
+              style={[styles.arrow, {
+                transform: [{ scaleY: flipImage }]
+              }]} source={ theme.isLight ? require('../../assets/images/arrow-black.png') : require('../../assets/images/arrow-white.png')}/>
+          </View>
+        </TouchableWithoutFeedback>
+        <Animated.View
+          style={[styles.textContainer, {
+            transform: [{ translateY: menuOptionsSlide }]
+          }]}>
+          <Text style={[styles.text1, { color: theme.text }]}>Refuge Unplugged</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Refuge Kids</Text>
+          <Text style={[styles.text, { color: theme.text }]}>RefugeLIVE TV</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Convos & Coffee</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Beloved: Relational TV</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Rapha: Healing TV</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Daughters of the King TV</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Refuge Men TV</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Prophetic TV with Yvonne Camper</Text>
+        </Animated.View>
+        </>
+      )}}
+      </ThemeContext.Consumer>
     )
   }
 }
@@ -80,7 +87,6 @@ const styles = StyleSheet.create({
     zIndex: 101
   },
   heading: {
-    color: 'white',
     fontFamily: 'SourceSansPro400',
     fontSize: 16,
     marginLeft: 10,
@@ -98,7 +104,6 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   text1: {
-    color: 'white',
     fontFamily: 'SourceSansPro400',
     fontSize: 16,
     width: 300,
@@ -106,7 +111,6 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
   },
   text: {
-    color: 'white',
     fontFamily: 'SourceSansPro400',
     fontSize: 16,
     width: 300,

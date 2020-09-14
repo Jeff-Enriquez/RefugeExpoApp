@@ -39,10 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 999,
+    paddingVertical: 3,
   },
   headingText: {
     marginLeft: 5,
     fontFamily: 'Montserrat600',
     fontSize: 14,
+    letterSpacing: 1,
   },
 });
