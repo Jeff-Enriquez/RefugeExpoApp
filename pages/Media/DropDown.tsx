@@ -4,11 +4,20 @@ import { AppLoading } from 'expo';
 import {
   useFonts,
   SourceSansPro_400Regular as SourceSansPro400,
+  SourceSansPro_600SemiBold as SourceSansPro600,
+
 } from '@expo-google-fonts/source-sans-pro';
 
 export default function DropDown() {
-  const flipImage = useRef(new Animated.Value(-1)).current;
-  const [scaleValue, setScaleValue] = useState<number>(-1)
+  const flipImage = useRef(new Animated.Value(1)).current;
+  const [scaleValue, setScaleValue] = useState<number>(1)
+  const menuOptionsSlide = useRef(new Animated.Value(-300)).current;
+  const [menuOptionsSlideValue, setMenuOptionsSlideValue] = useState<number>(-300)
+
+  const animateMenu = () => {
+    setScaleValue(prevNum => prevNum === -1 ? 1 : -1)
+    setMenuOptionsSlideValue(prevValue => prevValue === -300 ? 0 : -300)
+  }
 
   useEffect(() => {
     Animated.timing(flipImage, {
@@ -18,14 +27,22 @@ export default function DropDown() {
     }).start();
   }, [scaleValue])
 
-  let [fontsLoaded] = useFonts({ SourceSansPro400, });
+  useEffect(() => {
+    Animated.timing(menuOptionsSlide, {
+      toValue: menuOptionsSlideValue,
+      duration: 200, 
+      useNativeDriver: true
+    }).start();
+  }, [menuOptionsSlideValue])
+
+  let [fontsLoaded] = useFonts({ SourceSansPro400 });
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <>
-      <TouchableWithoutFeedback onPress={() => setScaleValue(prevNum => prevNum === -1 ? 1 : -1)}>
+      <TouchableWithoutFeedback onPress={() => animateMenu()}>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>Refuge Unplugged</Text>
           <Animated.Image 
@@ -34,7 +51,10 @@ export default function DropDown() {
             }]} source={require('../../assets/images/arrow-white.png')}/>
         </View>
       </TouchableWithoutFeedback>
-      <View style={styles.textContainer}>
+      <Animated.View
+        style={[styles.textContainer, {
+          transform: [{ translateY: menuOptionsSlide }]
+        }]}>
         <Text style={styles.text1}>Refuge Unplugged</Text>
         <Text style={styles.text}>Refuge Kids</Text>
         <Text style={styles.text}>RefugeLIVE TV</Text>
@@ -44,7 +64,7 @@ export default function DropDown() {
         <Text style={styles.text}>Daughters of the King TV</Text>
         <Text style={styles.text}>Refuge Men TV</Text>
         <Text style={styles.text}>Prophetic TV with Yvonne Camper</Text>
-      </View>
+      </Animated.View>
       </>
     )
   }
@@ -64,9 +84,9 @@ const styles = StyleSheet.create({
   },
   heading: {
     color: 'white',
-    fontFamily: 'SourceSansPro400',
+    fontFamily: 'SourceSansPro600',
     fontSize: 16,
-    textDecorationLine: 'underline',
+    // textDecorationLine: 'underline',
     marginLeft: 10,
   },
   textContainer: {
@@ -75,6 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#222222',
     paddingBottom: 3,
+    zIndex: -1,
   },
   text1: {
     color: 'white',
