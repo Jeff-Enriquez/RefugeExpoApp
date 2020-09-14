@@ -4,7 +4,6 @@ import { AppLoading } from 'expo';
 import {
   useFonts,
   SourceSansPro_400Regular as SourceSansPro400,
-  SourceSansPro_600SemiBold as SourceSansPro600,
 
 } from '@expo-google-fonts/source-sans-pro';
 
@@ -16,7 +15,7 @@ export default function DropDown() {
 
   const animateMenu = () => {
     setScaleValue(prevNum => prevNum === -1 ? 1 : -1)
-    setMenuOptionsSlideValue(prevValue => prevValue === -220 ? 88 : -220)
+    setMenuOptionsSlideValue(prevValue => prevValue === -220 ? 87 : -220)
   }
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function DropDown() {
     }).start();
   }, [menuOptionsSlideValue])
 
-  let [fontsLoaded] = useFonts({ SourceSansPro400, SourceSansPro600 });
+  let [fontsLoaded] = useFonts({ SourceSansPro400 });
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -77,17 +76,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     maxHeight: 42,
-    backgroundColor: '#222222',
-    borderColor: '#C3C3C3',
-    borderBottomWidth: 0.5,
+    backgroundColor: '#333333',
     paddingVertical: 5,
     zIndex: 101
   },
   heading: {
     color: 'white',
-    fontFamily: 'SourceSansPro600',
+    fontFamily: 'SourceSansPro400',
     fontSize: 16,
-    // textDecorationLine: 'underline',
     marginLeft: 10,
   },
   textContainer: {
@@ -96,8 +92,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#222222',
+    backgroundColor: '#333333',
     paddingBottom: 3,
+    borderColor: '#C3C3C3',
+    borderTopWidth: 0.5,
     zIndex: 100,
   },
   text1: {
