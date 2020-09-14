@@ -8,7 +8,21 @@ import ThemeContext from './ThemeContext'
 export default function App() {
   const [route, setRoute] = useState<string>('Home')
 
-  const darkTheme = { text: 'white', background: 'black', barStyle: 'light-content'}
+  type barStates = 'light-content' | 'dark-content'
+
+  interface Theme {
+    text: string
+    background: string
+    barStyle: barStates
+    isLight: boolean
+  }
+  
+  const darkTheme: Theme = {
+    text: 'white',
+    background: 'black', 
+    barStyle: 'light-content',
+    isLight: false
+  }
 
   return (
     <ThemeContext.Provider value={darkTheme}>

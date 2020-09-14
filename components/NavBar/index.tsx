@@ -6,6 +6,7 @@ import {
   useFonts,
   Montserrat_400Regular as Montserrat400,
 } from '@expo-google-fonts/montserrat';
+import ThemeContext from '../../ThemeContext'
 
 export default function NavBar({ setRoute }) {
   let [fontsLoaded] = useFonts({
@@ -16,35 +17,62 @@ export default function NavBar({ setRoute }) {
     return <AppLoading />;
   } else {
     return (
-      <>
-      <View style={styles.margin}></View>
-      <View style={styles.navBar}>
-        <TouchableWithoutFeedback onPress={() => setRoute('Home')}>
-          <View style={styles.navOption}>
-            <Image source={require('../../assets/images/home-white.png')} style={{width: 23, height: 22.34}}/>
-            <Text style={styles.text}>Home</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => setRoute('Media')}>
-          <View style={styles.navOption}>
-            <Image source={require('../../assets/images/media-white.png')} style={{width: 23, height: 23}}/>
-            <Text style={styles.text}>Media</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => setRoute('Give')}>
-          <View style={styles.navOption}>
-            <Image source={require('../../assets/images/give-white.png')} style={{width: 23, height: 23}}/>
-            <Text style={styles.text}>Give</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => setRoute('More')}>
-          <View style={styles.navOption}>
-            <Image source={require('../../assets/images/more-white.png')} style={{width: 23, height: 19.17}}/>
-            <Text style={styles.text}>More</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-      </>
+      <ThemeContext.Consumer>
+      {(theme) => {
+        return ( 
+        <>
+        <View style={styles.margin}></View>
+        <View style={[styles.navBar, { backgroundColor: theme.background}]}>
+          <TouchableWithoutFeedback onPress={() => setRoute('Home')}>
+            <View style={styles.navOption}>
+              {
+                theme.isLight ?
+                <Image source={require('../../assets/images/home-black.png')} style={{width: 23, height: 22.34}}/>
+                :
+                <Image source={require('../../assets/images/home-white.png')} style={{width: 23, height: 22.34}}/>
+              }
+              <Text style={[styles.text, { color: theme.text }]}>Home</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setRoute('Media')}>
+            <View style={styles.navOption}>
+              {
+                theme.isLight ?
+                <Image source={require('../../assets/images/media-black.png')} style={{width: 23, height: 23}}/>
+                :
+                <Image source={require('../../assets/images/media-white.png')} style={{width: 23, height: 23}}/>
+              }
+              <Text style={[styles.text, { color: theme.text }]}>Media</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setRoute('Give')}>
+            <View style={styles.navOption}>
+              {
+                theme.isLight
+                ?
+                <Image source={require('../../assets/images/give-black.png')} style={{width: 23, height: 23}}/>
+                :
+                <Image source={require('../../assets/images/give-white.png')} style={{width: 23, height: 23}}/>
+              }
+              <Text style={[styles.text, { color: theme.text }]}>Give</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => setRoute('More')}>
+            <View style={styles.navOption}>
+              {
+                theme.isLight
+                ?
+                <Image source={require('../../assets/images/more-black.png')} style={{width: 23, height: 19.17}}/>
+                :
+                <Image source={require('../../assets/images/more-white.png')} style={{width: 23, height: 19.17}}/>
+              }
+              <Text style={[styles.text, { color: theme.text }]}>More</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+        </>
+      )}}
+      </ThemeContext.Consumer>
     );
   }
 }
@@ -61,7 +89,6 @@ const styles = StyleSheet.create({
     maxHeight: 55,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'black',
     flex: 1,
     borderTopColor: '#222222',
     borderTopWidth: 1,
@@ -73,7 +100,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   text: {
-    color: 'white',
     fontFamily: 'Montserrat400',
     fontSize: 12,
     paddingTop: 3,
