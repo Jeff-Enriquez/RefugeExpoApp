@@ -6,6 +6,8 @@ import {
   useFonts,
   Montserrat_600SemiBold as Montserrat600,
 } from '@expo-google-fonts/montserrat';
+import ThemeContext from '../../ThemeContext'
+
 
 export default function Header() {
   let [fontsLoaded] = useFonts({
@@ -16,10 +18,15 @@ export default function Header() {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.heading}>
-        <Image source={require('../../assets/images/fire-icon.png')} style={{width: 33, height: 33}}/>
-        <Text style={styles.headingText}>Refuge</Text>
-      </View>
+      <ThemeContext.Consumer>
+      {(theme) => {
+        return ( 
+        <View style={[styles.heading, { backgroundColor: theme.background }]}>
+          <Image source={require('../../assets/images/fire-icon.png')} style={{width: 16, height: 20}}/>
+          <Text style={[styles.headingText, { color: theme.text }]}>Refuge</Text>
+        </View>
+      )}}
+      </ThemeContext.Consumer>
     );
   }
 }
@@ -31,12 +38,10 @@ const styles = StyleSheet.create({
     maxHeight: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
-    flex: 1,
     zIndex: 999,
   },
   headingText: {
-    color: 'white',
+    marginLeft: 5,
     fontFamily: 'Montserrat600',
     fontSize: 14,
   },
