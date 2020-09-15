@@ -46,7 +46,7 @@ export default function DropDown() {
         return ( 
         <>
         <TouchableWithoutFeedback onPress={() => animateMenu()}>
-          <View style={styles.headingContainer}>
+          <View style={[styles.headingContainer, { backgroundColor: theme.dropDownBackground }]}>
             <Text style={[styles.heading, { color: theme.text }]}>Refuge Unplugged</Text>
             <Animated.Image 
               style={[styles.arrow, {
@@ -55,18 +55,20 @@ export default function DropDown() {
           </View>
         </TouchableWithoutFeedback>
         <Animated.View
-          style={[styles.textContainer, {
-            transform: [{ translateY: menuOptionsSlide }]
-          }]}>
-          <Text style={[styles.text1, { color: theme.text }]}>Refuge Unplugged</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Refuge Kids</Text>
-          <Text style={[styles.text, { color: theme.text }]}>RefugeLIVE TV</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Convos & Coffee</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Beloved: Relational TV</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Rapha: Healing TV</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Daughters of the King TV</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Refuge Men TV</Text>
-          <Text style={[styles.text, { color: theme.text }]}>Prophetic TV with Yvonne Camper</Text>
+          style={[styles.textContainer, 
+            { backgroundColor: theme.dropDownBackground }, 
+            { borderColor: theme.dropDownBorder },
+            { transform: [{ translateY: menuOptionsSlide }] }
+            ]}>
+          <Text style={[styles.text1, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Refuge Unplugged</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Refuge Kids</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>RefugeLIVE TV</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Convos & Coffee</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Beloved: Relational TV</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Rapha: Healing TV</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Daughters of the King TV</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Refuge Men TV</Text>
+          <Text style={[styles.text, { color: theme.text }, { borderColor: theme.dropDownBorder }]}>Prophetic TV with Yvonne Camper</Text>
         </Animated.View>
         </>
       )}}
@@ -82,7 +84,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     maxHeight: 42,
-    backgroundColor: '#333333',
     paddingVertical: 5,
     zIndex: 101
   },
@@ -97,9 +98,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#333333',
     paddingBottom: 3,
-    borderColor: '#C3C3C3',
     borderTopWidth: 0.5,
     zIndex: 100,
   },
@@ -115,7 +114,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     width: 300,
     textAlign: 'center',
-    borderColor: '#C3C3C3',
     borderTopWidth: 0.3,
     paddingVertical: 3,
   },
