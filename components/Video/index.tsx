@@ -6,6 +6,7 @@ import {
   SourceSansPro_400Regular as SourceSansPro400,
   SourceSansPro_600SemiBold as SourceSansPro600,
 } from '@expo-google-fonts/source-sans-pro';
+import ThemeContext from '../../ThemeContext'
 
 export default function Video() {
   let [fontsLoaded] = useFonts({ SourceSansPro400, SourceSansPro600 });
@@ -14,8 +15,11 @@ export default function Video() {
     return <AppLoading />;
   } else {
     return (
+      <ThemeContext.Consumer>
+      {({ theme }) => {
+        return ( 
       <View style={styles.container}>
-        <Text style={styles.title}>This Is An Example Of A Video Title</Text>
+        <Text style={[styles.title, { color: theme.text }]}>This Is An Example Of A Video Title</Text>
         <TouchableWithoutFeedback>
           <View style={styles.watchNowContainer}>
             <Image style={styles.playBtn} source={require('../../assets/images/play-orange.png')}/>
@@ -23,6 +27,8 @@ export default function Video() {
           </View>
         </TouchableWithoutFeedback>
       </View>
+      )}}
+      </ThemeContext.Consumer>
     )
   }
 }
@@ -34,7 +40,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   title: {
-    color: 'white',
     fontFamily: 'SourceSansPro400',
     fontSize: 14,
     paddingTop: 12,
