@@ -22,7 +22,7 @@ export default function NavBar({ setRoute }) {
         return ( 
         <>
         <View style={styles.margin}></View>
-        <View style={[styles.navBar, { backgroundColor: theme.background}]}>
+        <View style={[styles.navBar, { backgroundColor: theme.background, borderTopColor: theme.navBorder },]}>
           <TouchableWithoutFeedback onPress={() => setRoute('Home')}>
             <View style={styles.navOption}>
               {
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flex: 1,
-    borderTopColor: '#222222',
     borderTopWidth: 1,
   },
   navOption: {

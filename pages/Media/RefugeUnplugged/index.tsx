@@ -6,6 +6,7 @@ import {
   Montserrat_400Regular as Montserrat400,
 } from '@expo-google-fonts/montserrat';
 import VideoItem from '../../../components/Video'
+import ThemeContext from '../../../ThemeContext'
 
 export default function Media() {
   let [fontsLoaded] = useFonts({ Montserrat400, });
@@ -14,10 +15,13 @@ export default function Media() {
     return <AppLoading />;
   } else {
     return (
+      <ThemeContext.Consumer>
+      {({ theme }) => {
+        return ( 
       <>
       <View style={styles.container}>
         <Image style={styles.image} source={require('../../../assets/images/worship-guitar.jpg')}/>
-        <Text style={styles.text}>Come back to this screen for our live streaming service</Text>
+        <Text style={[styles.text, { color: theme.text }]}>Come back to this screen for our live streaming service</Text>
       </View>
       <VideoItem/>
       <VideoItem/>
@@ -29,6 +33,8 @@ export default function Media() {
       <VideoItem/>
       <VideoItem/>
       </>
+      )}}
+      </ThemeContext.Consumer>
     )
   }
 }
@@ -39,7 +45,6 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    color: 'white',
     fontFamily: 'Montserrat400',
     fontSize: 10,
     paddingTop: 5,

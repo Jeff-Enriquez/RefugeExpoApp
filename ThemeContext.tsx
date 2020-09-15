@@ -9,6 +9,7 @@ export interface Theme {
   isLight: boolean
   dropDownBackground: string
   dropDownBorder: string
+  navBorder: string
 }
 
 interface Themes {
@@ -24,6 +25,7 @@ export const themes: Themes = {
     isLight: true,
     dropDownBackground: '#FFE0B2',
     dropDownBorder: '#BDBDBD',
+    navBorder: '#eeeeee',
   },
   dark: {
     text: 'white',
@@ -32,6 +34,7 @@ export const themes: Themes = {
     isLight: false,
     dropDownBackground: '#333333',
     dropDownBorder: '#C3C3C3',
+    navBorder: '#222222',
   }
 }
 
