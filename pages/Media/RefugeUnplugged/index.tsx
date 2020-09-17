@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { AppLoading } from 'expo';
 import {
@@ -10,21 +10,6 @@ import ThemeContext from '../../../ThemeContext'
 
 export default function Media() {
   let [fontsLoaded] = useFonts({ Montserrat400, });
-  const [data, setData] = useState<string>('react native videos')
-  const [miniCardData, setMiniCardData] = useState([])
-  const youtubeAPI = process.env.REACT_NATIVE_YOUTUBE_API
-
-  const fetchData = () => {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${data}songs&type=video&key=${youtubeAPI}`)
-    .then(res => res.json())
-    .then( data => {
-      console.log(data)
-    })
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   if (!fontsLoaded) {
     return <AppLoading />;
